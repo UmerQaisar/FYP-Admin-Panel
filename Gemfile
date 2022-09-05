@@ -5,11 +5,13 @@ ruby '2.6.10'
 
 #Devise Gem to Create Admin
 gem 'devise'
-
 #Bootstrap Gem
 gem 'bootstrap', '~> 5.2.0'
 #Jquery
 gem 'jquery-rails'
+# Dot ENV
+gem 'dotenv-rails', groups: [:development, :test]
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.0.5', '>= 6.0.5.1'

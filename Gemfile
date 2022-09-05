@@ -11,6 +11,8 @@ gem 'bootstrap', '~> 5.2.0'
 gem 'jquery-rails'
 # Dot ENV
 gem 'dotenv-rails', groups: [:development, :test]
+#Firestore Gem
+gem "google-cloud-firestore"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'

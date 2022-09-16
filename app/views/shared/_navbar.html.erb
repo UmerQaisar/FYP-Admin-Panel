@@ -5,49 +5,40 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-        <li class="nav-item active">
-          <%= link_to 'Home', root_path, class: "nav-link #{active_class root_path}" %>
-        </li>
+      <% if admin_signed_in? %>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-        <li>
-          <%= link_to 'All Users', users_path, class: "nav-link #{active_class users_path}" %>
-        </li>
+          <li class="nav-item active">
+            <%= link_to 'Home', root_path, class: "nav-link #{active_class root_path}" %>
+          </li>
 
-<!--        <li>-->
-          <%#= link_to 'My Services', my_travel_details_travel_details_path, class: "nav-link #{active_class(my_travel_details_travel_details_path)} " %>
-<!--        </li>-->
+          <li>
+            <%= link_to '<i class="bi bi-wallet"></i> All Users'.html_safe, users_path, class: "nav-link #{active_class users_path}" %>
+          </li>
 
-<!--        <li>-->
-          <%#= link_to 'Available Services', travel_details_path, class: "nav-link #{active_class(travel_details_path)}" %>
-<!--        </li>-->
+        </ul>
 
-<!--        <li>-->
-          <%#= link_to 'My Orders', current_user_orders_path, class: "nav-link #{active_class(current_user_orders_path)}" %>
-<!--        </li>-->
+        <form class="d-flex">
 
-      </ul>
+          <% if admin_signed_in? %>
+            <div class="form-control btn btn-danger me-2">
+              <%= link_to '<i class="bi bi-box-arrow-right"></i> Sign out'.html_safe, destroy_admin_session_path, method: :delete, class: "nav-link" %>
+            </div>
+          <% else %>
+            <div class="form-control btn btn-success me-2">
+              <%= link_to 'Admin Log In', new_admin_session_path, class: "nav-link" %>
+            </div>
 
-      <form class="d-flex">
+          <% end %>
 
-        <% if admin_signed_in? %>
-          <div class="form-control btn btn-danger me-2">
-            <%= link_to 'Sign Out', destroy_admin_session_path, method: :delete, class: "nav-link" %>
-          </div>
-        <% else %>
-          <div class="form-control btn btn-success me-2">
-            <%= link_to 'Log In', new_admin_session_path, class: "nav-link" %>
-          </div>
-<!--          <div class="form-control btn btn-outline-success me-2">-->
-            <%#= link_to 'Register', new_admin_registration_path, class: "nav-link" %>
-<!--          </div>-->
+        </form>
 
-        <% end %>
-
-      </form>
-
+      <% end %>
 
     </div>
   </div>
+  </body>
 </nav>
+
+

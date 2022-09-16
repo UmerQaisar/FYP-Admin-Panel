@@ -1,10 +1,7 @@
-require 'net/http'
-require 'uri'
-require 'json'
-require "google/cloud/firestore"
-
 class UsersController < ApplicationController
   before_action :create_firestore
+  before_action :authenticate_admin!
+
 
   def index
     @users = @users_ref.get
@@ -12,20 +9,15 @@ class UsersController < ApplicationController
 
   def show
     @user = @users_ref.doc(params[:id]).get
+    @reports = @users_ref.doc(params[:id]).col("Reports").get
+    @count = 0
   end
 
   def destroy
-    @user = @users_ref.doc(params[:id])
-    if @user.get.exists?
-      @user.delete
-      redirect_to users_path
-    end
-  end
-
-  private
-
-  def create_firestore
-    @firestore = Google::Cloud::Firestore.new project_id: 'login-app-dc785', keyfile: ENV['GOOGLE_KEY_FILE']
-    @users_ref = @firestore.col('Users')
+    # @user = @users_ref.doc(params[:id])
+    # if @user.get.exists?
+    #   @user.delete
+    #   redirect_to users_path
+    # end
   end
 end

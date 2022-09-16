@@ -7,4 +7,8 @@ module ApplicationHelper
     end
   end
 
+  def view_details_icon
+    '<i class="icon-ok icon-white"></i> Do it@'.html_safe
+  end
+
 end

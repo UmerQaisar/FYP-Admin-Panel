@@ -4,10 +4,9 @@
       <h5>Patient's Details</h5>
       <div class="card mt-4">
         <div class="card-header">
-          Current User
+          <%= @user[:userName] %>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Name: <%= @user[:userName] %></li>
           <li class="list-group-item">Email: <%= @user[:email] %></li>
           <li class="list-group-item">Address: <%= @user[:address] %></li>
           <li class="list-group-item">Contact: <%= @user[:contact] %></li>

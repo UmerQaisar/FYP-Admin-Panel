@@ -5,7 +5,7 @@ class HomeController < ApplicationController
   end
 
   def get_reports
-    patient_id = params[:id]
+    patient_id = params[:id].delete(' ')
     if patient_id.empty?
       redirect_to root_path, notice: 'Patient ID should not be empty'
     elsif @users_ref.doc(patient_id).get.exists?

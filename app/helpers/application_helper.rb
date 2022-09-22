@@ -7,8 +7,12 @@ module ApplicationHelper
     end
   end
 
-  def view_details_icon
-    '<i class="icon-ok icon-white"></i> Do it@'.html_safe
+  def active_category(category, current_category)
+    if category == current_category
+      'btn btn-dark'
+    else
+      'btn btn-outline-dark'
+    end
   end
 
 end

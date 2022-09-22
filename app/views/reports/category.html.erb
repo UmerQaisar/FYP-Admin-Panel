@@ -16,7 +16,7 @@
 
       <h5 class="my-4">Categories</h5>
       <% @categories.each do |category| %>
-        <%= link_to "/reports/#{params[:patient_id]}/#{category[:name]}", class: 'd-flex btn btn-outline-dark my-3 p-2' do %>
+        <%= link_to "/reports/#{params[:patient_id]}/#{category[:name]}", class: "d-flex btn my-3 p-2 #{active_category(category[:name], params[:category])}" do %>
           <i class="bi bi-folder" style="color: goldenrod"></i>
           <div class="ms-3"><%= category[:name] %></div>
         <% end %>

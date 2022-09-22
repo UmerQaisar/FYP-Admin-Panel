@@ -1,8 +1,7 @@
 class HomeController < ApplicationController
   before_action :create_firestore
 
-  def homepage
-  end
+  def homepage; end
 
   def get_reports
     patient_id = params[:id].delete(' ')

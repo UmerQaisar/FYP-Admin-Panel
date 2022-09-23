@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   # Routes for Patient Reports
   get 'reports/:patient_id', to:'reports#index'
   get 'reports/:patient_id/:category', to:'reports#category'
-
+  get 'prescription/:patient_id', to: 'reports#prescription'
+  post 'add_prescription/:patient_id', to: 'reports#add_prescription'
   # Routes for HomePages
   get 'homepage', to: 'home#homepage'
   get 'get_reports', to: 'home#get_reports'

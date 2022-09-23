@@ -16,6 +16,11 @@ module ApplicationHelper
   end
 
   def is_reports_path
-    request.path == "/reports/#{params[:patient_id]}"
+    request.path.include? "/reports/#{params[:patient_id]}"
+
+  end
+
+  def is_prescription
+    request.path == "/prescription/#{params[:patient_id]}"
   end
 end

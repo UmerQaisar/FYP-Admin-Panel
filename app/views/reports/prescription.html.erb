@@ -1,0 +1,12 @@
+<div class="container m-5 row ">
+
+  <div class="col-4">
+    <h5 class="mb-3">Add Prescription</h5>
+    <%= form_with url: "/add_prescription/#{@patient_id}",method: :post, local: true do |f| %>
+      <%= f.text_area :prescription, class: 'form-control mb-3'%>
+      <%= f.submit 'Add Prescription', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+
+
+</div>

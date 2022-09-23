@@ -1,0 +1,15 @@
+<div class="border rounded p-2">
+  <h5 class="mb-4 ">Prescriptions</h5>
+
+  <% @prescriptions.each do |prescription| %>
+    <div class="card my-3">
+      <div class="card-body">
+        <h5 class="card-title"><%= prescription[:doctorName] %></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><%= prescription[:doctorEmail] %></h6>
+        <p class="card-text"><%= prescription[:prescription] %></p>
+        <div class="card-footer"><%= prescription[:createdAt] %></div>
+      </div>
+    </div>
+  <% end %>
+
+</div>

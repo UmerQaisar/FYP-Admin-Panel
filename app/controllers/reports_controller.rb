@@ -2,7 +2,7 @@ class ReportsController < ApplicationController
   before_action :create_firestore
   before_action :authenticate_doctor!, only:[:prescription, :add_prescription]
   before_action :get_user_and_reports, except: [:prescription]
-  before_action :get_prescription_ref, only: [:add_prescription]
+  before_action :get_prescription_ref, only: [:add_prescription, :prescription]
 
   def index
     @reports = @reports_ref.get
@@ -16,6 +16,7 @@ class ReportsController < ApplicationController
 
   def prescription
     @patient_id = params[:patient_id]
+    @prescriptions = @prescription_ref.get
   end
 
   def add_prescription

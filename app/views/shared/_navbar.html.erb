@@ -6,8 +6,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-      <% if admin_signed_in? %>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <% if admin_signed_in? %>
+
 
           <li class="nav-item active">
             <%= link_to 'Home', root_path, class: "nav-link #{active_class root_path}" %>
@@ -17,24 +18,35 @@
             <%= link_to '<i class="bi bi-wallet"></i> All Users'.html_safe, users_path, class: "nav-link #{active_class users_path}" %>
           </li>
 
-        </ul>
 
-        <form class="d-flex">
+        <% end %>
 
-          <% if admin_signed_in? %>
-            <div class="form-control btn btn-danger me-2">
-              <%= link_to '<i class="bi bi-box-arrow-right"></i> Sign out'.html_safe, destroy_admin_session_path, method: :delete, class: "nav-link" %>
-            </div>
-          <% else %>
-            <div class="form-control btn btn-success me-2">
-              <%= link_to 'Admin Log In', new_admin_session_path, class: "nav-link" %>
-            </div>
+        <% if doctor_signed_in? && is_reports_path %>
+          
+        <% end %>
 
-          <% end %>
+        <% unless admin_signed_in? || doctor_signed_in? %>
+          <%= link_to 'Sign In as Doctor', new_doctor_session_path, class: "nav-link  #{active_class new_doctor_session_path}" %>
+        <% end %>
+      </ul>
 
-        </form>
+      <form class="d-flex">
 
-      <% end %>
+        <% if doctor_signed_in? %>
+          <div class="form-control btn btn-danger me-2">
+            <%= link_to '<i class="bi bi-box-arrow-right"></i> Sign out'.html_safe, destroy_doctor_session_path, method: :delete, class: "nav-link" %>
+          </div>
+        <% end %>
+
+
+        <% if admin_signed_in? %>
+          <div class="form-control btn btn-danger me-2">
+            <%= link_to '<i class="bi bi-box-arrow-right"></i> Sign out'.html_safe, destroy_admin_session_path, method: :delete, class: "nav-link" %>
+          </div>
+        <% end %>
+
+      </form>
+
 
     </div>
   </div>

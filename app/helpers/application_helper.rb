@@ -15,4 +15,7 @@ module ApplicationHelper
     end
   end
 
+  def is_reports_path
+    request.path == "/reports/#{params[:patient_id]}"
+  end
 end

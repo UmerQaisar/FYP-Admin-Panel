@@ -16,19 +16,14 @@
       <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= user[:Email] %></td>
-          <td><%= user[:UserName] %></td>
-          <td><%= user[:Address] %></td>
-          <td><%= user[:Contact] %></td>
+          <td><%= user[:email] %></td>
+          <td><%= user[:userName] %></td>
+          <td><%= user[:address] %></td>
+          <td><%= user[:contact] %></td>
           <td><%= user.document_id %></td>
           <td class="text-center">
-            <%#= link_to 'Delete', { controller: users_path, action: :destroy, id: user.document_id }, method: :delete, class: 'btn btn-danger me-3' %>
-            <%= link_to(user_path(user.document_id)) do %>
-              <i class="bi bi-clipboard-data-fill"></i>
-            <% end %>
-
-            <%= link_to 'View', user_path(user.document_id) %>
-
+            <%= link_to 'Delete', { controller: users_path, action: :destroy, id: user.document_id }, method: :delete, class: 'btn btn-danger me-3' %>
+            <%= link_to 'View', "/reports/#{user.document_id}", class: 'btn btn-success me-3' %>
           </td>
         </tr>
       <% end %>

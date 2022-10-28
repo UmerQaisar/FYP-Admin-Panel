@@ -30,8 +30,10 @@ class ReportsController < ApplicationController
         createdAt: DateTime.now,
         prescription: prescription_text
       }
-
       @prescription_ref.add prescription_hash
+      # sending email to user
+      get_patient_email
+      PrescriptionMailer.send_prescription_email(@email,current_doctor.email, current_doctor.name, prescription_text).deliver
       redirect_to "/prescription/#{params[:patient_id]}", notice: 'Prescription Added'
     end
   end
@@ -46,5 +48,9 @@ class ReportsController < ApplicationController
     @user = @users_ref.doc(params[:patient_id]).get
     @categories = @users_ref.doc(params[:patient_id]).col("Categories").get
     @reports_ref = @users_ref.doc(params[:patient_id]).col("Reports")
+  end
+
+  def get_patient_email
+    @email =  @users_ref.doc(params[:patient_id]).get[:email]
   end
 end

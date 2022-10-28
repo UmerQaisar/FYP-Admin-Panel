@@ -14,10 +14,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    # @user = @users_ref.doc(params[:id])
-    # if @user.get.exists?
-    #   @user.delete
-    #   redirect_to users_path
-    # end
+    @user = @users_ref.doc(params[:id])
+    if @user.get.exists?
+      @user.delete
+      redirect_to users_path
+    end
   end
 end

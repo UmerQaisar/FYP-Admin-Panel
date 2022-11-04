@@ -21,8 +21,14 @@
           <%= link_to 'Add-View Prescription', "/prescription/#{params[:patient_id]}", class: "nav-link #{active_class "/prescription/#{params[:patient_id]}"}" %>
         <% end %>
 
+        <% if is_reports_path %>
+          <% unless doctor_signed_in? %>
+            <%= link_to 'Sign In as Doctor', new_doctor_session_path, class: "nav-link  #{active_class new_doctor_session_path}" %>
+          <% end %>
+        <% end %>
+
         <% unless admin_signed_in? || doctor_signed_in? %>
-          <%= link_to 'Sign In as Doctor', new_doctor_session_path, class: "nav-link  #{active_class new_doctor_session_path}" %>
+
         <% end %>
       </ul>
 

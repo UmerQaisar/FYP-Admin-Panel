@@ -1,6 +1,7 @@
 class ReportsController < ApplicationController
   before_action :create_firestore
   before_action :authenticate_doctor!, only:[:prescription, :add_prescription]
+  before_action :authenticate_admin!, only:[:delete_reports]
   before_action :get_user_and_reports, except: [:prescription]
   before_action :get_prescription_ref, only: [:add_prescription, :prescription]
 
@@ -35,6 +36,14 @@ class ReportsController < ApplicationController
       get_patient_email
       PrescriptionMailer.send_prescription_email(@email,current_doctor.email, current_doctor.name, prescription_text).deliver
       redirect_to "/prescription/#{params[:patient_id]}", notice: 'Prescription Added'
+    end
+  end
+
+  def delete_reports
+    @report = @reports_ref.doc(params[:report_id])
+    if @report.get.exists?
+      @report.delete
+      redirect_to get_reports_path(patient_id: params[:patient_id])
     end
   end
 

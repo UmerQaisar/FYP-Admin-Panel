@@ -16,7 +16,7 @@
 
       <h5 class="my-4">Categories</h5>
       <% @categories.each do |category| %>
-        <%= link_to "/reports/#{params[:patient_id]}/#{category[:name]}", class:'d-flex btn btn-outline-dark my-3 p-2' do %>
+        <%= link_to "/reports/#{params[:patient_id]}/#{category[:name]}", class: 'd-flex btn btn-outline-dark my-3 p-2' do %>
           <i class="bi bi-folder" style="color: goldenrod"></i>
           <div class="ms-3"><%= category[:name] %></div>
         <% end %>
@@ -33,7 +33,11 @@
             <img src="<%= report[:downloadUrl] %>" class="img-fluid rounded" alt="Report" width="100%">
             <br>
             <h6 class="px-3 pt-3">Category</h6>
-            <p class="px-3 pb-3" style="white-space: pre"><%= report[:category] %></p>
+            <p class="px-3 pb-1" style="white-space: pre"><%= report[:category] %></p>
+            <br>
+            <% if admin_signed_in? %>
+              <%#= link_to 'Delete', delete_reports_path(report_id: report.document_id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger ms-3 mb-3' %>
+            <% end %>
           </div>
         <% end %>
         <%= @count == 0 ? 'No Report For This User' : '' %>

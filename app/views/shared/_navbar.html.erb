@@ -27,6 +27,10 @@
           <% end %>
         <% end %>
 
+        <% if doctor_signed_in? %>
+        <%= link_to 'View Profile', doctor_profile_users_path, class: "nav-link  #{active_class doctor_profile_users_path}" %>
+        <% end %>
+
         <% unless admin_signed_in? || doctor_signed_in? %>
 
         <% end %>

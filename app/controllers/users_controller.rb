@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :create_firestore
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, except: [:doctor_profile]
+  before_action :authenticate_doctor!, only:[:doctor_profile]
 
 
   def index
@@ -19,5 +20,9 @@ class UsersController < ApplicationController
       @user.delete
       redirect_to users_path
     end
+  end
+
+  def doctor_profile
+    @doctor = current_doctor
   end
 end

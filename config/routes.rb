@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :doctors
   devise_for :admins, only: :session
-  resources :users
+  resources :users do
+    get :doctor_profile, on: :collection
+  end
 
   # Routes for Patient Reports
   get 'reports/:patient_id', to:'reports#index'
